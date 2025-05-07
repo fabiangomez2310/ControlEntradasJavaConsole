@@ -1,10 +1,11 @@
 package com.controlentradas.service;
 
 import com.controlentradas.model.Persona;
+import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -18,6 +19,8 @@ public class RegistroService {
     private static final int VALOR_ENTRADA = 30000;
     private static int contador = 0;
     private static double totalRecaudado = 0;
+    private static LocalDate hoy;
+    private DateTimeFormatter formatter;
 
     // Métodos públicos
 
@@ -29,7 +32,9 @@ public class RegistroService {
     }
 
     public void imprimirTicket(Persona persona) {
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         System.out.println("=================================");
+        System.out.println("Fecha: "+persona.getFechaHoraRegistro().format(formatter));
         System.out.println("Hola, " + persona.getNombres() + " " + persona.getApellidos());
         System.out.println("Tienes " + persona.getEdad() + " años.");
         System.out.println(persona.esMayorDeEdad() ? "ES MAYOR DE EDAD" : "Advertencia: ES MENOR DE EDAD");
@@ -41,8 +46,10 @@ public class RegistroService {
     }
 
     public void mostrarResumen() {
+        hoy = LocalDate.now();
+        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("=================================");
-        System.out.println("Resumen del día:");
+        System.out.println("Resumen del día: " +hoy.format(formatter));
         System.out.println("Total asistentes: " + contador);
         System.out.println("Total recaudado: $" + totalRecaudado);
         System.out.println("=================================");

@@ -1,5 +1,7 @@
 package com.controlentradas.model;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author FABIANG
@@ -11,12 +13,14 @@ public class Persona {
     private String apellidos;
     private int edad;
     private double valorPagado;
+    private LocalDateTime fechaHoraRegistro;
 
     // Constructor
     public Persona(String nombres, String apellidos, int edad) {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.edad = edad;
+        this.fechaHoraRegistro = LocalDateTime.now();
     }
 
     // Métodos públicos
@@ -25,7 +29,7 @@ public class Persona {
     }
 
     public void mostrarListado() {
-        System.out.println("Apellidos: " + apellidos + " - Nombres: " + nombres + " - Edad: " + edad +" Valor Pagado: "+valorPagado);
+        System.out.println(apellidos + " " + nombres + " | " + edad + " | " + valorPagado + " | " + fechaHoraRegistro);
     }
 
     // Getters y Setters
@@ -59,5 +63,13 @@ public class Persona {
 
     public void setValorPagado(double valorPagado) {
         this.valorPagado = valorPagado;
+    }
+
+    public LocalDateTime getFechaHoraRegistro() {
+        return fechaHoraRegistro;
+    }
+
+    public void setFechaHoraRegistro(LocalDateTime fechaHoraRegistro) {
+        this.fechaHoraRegistro = fechaHoraRegistro;
     }
 }
